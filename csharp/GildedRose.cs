@@ -35,7 +35,7 @@ namespace csharp
                     {
                         if (!IsSulfuras(item))
                         {
-                            item.Quality = item.Quality - ONE_QUALITY_UNIT;
+                            DecreaseQuality(item);
                         }
                     }
                 }
@@ -43,7 +43,7 @@ namespace csharp
                 {
                     if (item.Quality < MAXIMUM_QUALITY)
                     {
-                        item.Quality = item.Quality + ONE_QUALITY_UNIT;
+                        IncreaseQuality(item);
 
                         if (IsBackstagePass(item))
                         {
@@ -51,7 +51,7 @@ namespace csharp
                             {
                                 if (item.Quality < MAXIMUM_QUALITY)
                                 {
-                                    item.Quality = item.Quality + ONE_QUALITY_UNIT;
+                                    IncreaseQuality(item);
                                 }
                             }
 
@@ -59,7 +59,7 @@ namespace csharp
                             {
                                 if (item.Quality < MAXIMUM_QUALITY)
                                 {
-                                    item.Quality = item.Quality + ONE_QUALITY_UNIT;
+                                    IncreaseQuality(item);
                                 }
                             }
                         }
@@ -81,7 +81,7 @@ namespace csharp
                             {
                                 if (!IsSulfuras(item))
                                 {
-                                    item.Quality = item.Quality - ONE_QUALITY_UNIT;
+                                    DecreaseQuality(item);
                                 }
                             }
                         }
@@ -94,11 +94,21 @@ namespace csharp
                     {
                         if (item.Quality < MAXIMUM_QUALITY)
                         {
-                            item.Quality = item.Quality + ONE_QUALITY_UNIT;
+                            IncreaseQuality(item);
                         }
                     }
                 }
             }
+        }
+
+        private static void IncreaseQuality(Item item)
+        {
+            item.Quality = item.Quality + ONE_QUALITY_UNIT;
+        }
+
+        private static void DecreaseQuality(Item item)
+        {
+            item.Quality = item.Quality - ONE_QUALITY_UNIT;
         }
 
         private bool IsSulfuras(Item item)
