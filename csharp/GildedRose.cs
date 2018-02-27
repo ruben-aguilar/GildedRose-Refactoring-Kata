@@ -87,7 +87,7 @@ namespace csharp
                         }
                         else
                         {
-                            item.Quality = item.Quality - item.Quality;
+                            item.Quality = MINIMUM_QUALITY;
                         }
                     }
                     else
