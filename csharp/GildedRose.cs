@@ -27,11 +27,11 @@ namespace csharp
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name != AGED_BRIE && Items[i].Name != BACKSTAGE_PASS)
+                if (!IsAgedBrie(Items[i]) && !IsBackstagePass(Items[i]))
                 {
                     if (Items[i].Quality > MINIMUM_QUALITY)
                     {
-                        if (Items[i].Name != SULFURAS)
+                        if (!IsSulfuras(Items[i]))
                         {
                             Items[i].Quality = Items[i].Quality - ONE_QUALITY_UNIT;
                         }
@@ -43,7 +43,7 @@ namespace csharp
                     {
                         Items[i].Quality = Items[i].Quality + ONE_QUALITY_UNIT;
 
-                        if (Items[i].Name == BACKSTAGE_PASS)
+                        if (IsBackstagePass(Items[i]))
                         {
                             if (Items[i].SellIn < BACKSTAGE_PASS_TWO_QUALITY_UNITS_THRESHOLD)
                             {
@@ -64,20 +64,20 @@ namespace csharp
                     }
                 }
 
-                if (Items[i].Name != SULFURAS)
+                if (!IsSulfuras(Items[i]))
                 {
                     Items[i].SellIn = Items[i].SellIn - ONE_SELLIN_UNIT;
                 }
 
                 if (Items[i].SellIn < 0)
                 {
-                    if (Items[i].Name != AGED_BRIE)
+                    if (!IsAgedBrie(Items[i]))
                     {
-                        if (Items[i].Name != BACKSTAGE_PASS)
+                        if (!IsBackstagePass(Items[i]))
                         {
                             if (Items[i].Quality > MINIMUM_QUALITY)
                             {
-                                if (Items[i].Name != SULFURAS)
+                                if (!IsSulfuras(Items[i]))
                                 {
                                     Items[i].Quality = Items[i].Quality - ONE_QUALITY_UNIT;
                                 }
@@ -97,6 +97,21 @@ namespace csharp
                     }
                 }
             }
+        }
+
+        private bool IsSulfuras(Item item)
+        {
+            return item.Name == SULFURAS;
+        }
+
+        private bool IsBackstagePass(Item item)
+        {
+            return item.Name == BACKSTAGE_PASS;
+        }
+
+        private bool IsAgedBrie(Item item)
+        {
+            return item.Name == AGED_BRIE;
         }
     }
 }
