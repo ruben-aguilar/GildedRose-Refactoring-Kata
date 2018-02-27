@@ -27,72 +27,74 @@ namespace csharp
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (!IsAgedBrie(Items[i]) && !IsBackstagePass(Items[i]))
+                Item item = Items[i];
+
+                if (!IsAgedBrie(item) && !IsBackstagePass(item))
                 {
-                    if (Items[i].Quality > MINIMUM_QUALITY)
+                    if (item.Quality > MINIMUM_QUALITY)
                     {
-                        if (!IsSulfuras(Items[i]))
+                        if (!IsSulfuras(item))
                         {
-                            Items[i].Quality = Items[i].Quality - ONE_QUALITY_UNIT;
+                            item.Quality = item.Quality - ONE_QUALITY_UNIT;
                         }
                     }
                 }
                 else
                 {
-                    if (Items[i].Quality < MAXIMUM_QUALITY)
+                    if (item.Quality < MAXIMUM_QUALITY)
                     {
-                        Items[i].Quality = Items[i].Quality + ONE_QUALITY_UNIT;
+                        item.Quality = item.Quality + ONE_QUALITY_UNIT;
 
-                        if (IsBackstagePass(Items[i]))
+                        if (IsBackstagePass(item))
                         {
-                            if (Items[i].SellIn < BACKSTAGE_PASS_TWO_QUALITY_UNITS_THRESHOLD)
+                            if (item.SellIn < BACKSTAGE_PASS_TWO_QUALITY_UNITS_THRESHOLD)
                             {
-                                if (Items[i].Quality < MAXIMUM_QUALITY)
+                                if (item.Quality < MAXIMUM_QUALITY)
                                 {
-                                    Items[i].Quality = Items[i].Quality + ONE_QUALITY_UNIT;
+                                    item.Quality = item.Quality + ONE_QUALITY_UNIT;
                                 }
                             }
 
-                            if (Items[i].SellIn < BACKSTAGE_PASS_THREE_QUALITY_UNITS_THRESOLD)
+                            if (item.SellIn < BACKSTAGE_PASS_THREE_QUALITY_UNITS_THRESOLD)
                             {
-                                if (Items[i].Quality < MAXIMUM_QUALITY)
+                                if (item.Quality < MAXIMUM_QUALITY)
                                 {
-                                    Items[i].Quality = Items[i].Quality + ONE_QUALITY_UNIT;
+                                    item.Quality = item.Quality + ONE_QUALITY_UNIT;
                                 }
                             }
                         }
                     }
                 }
 
-                if (!IsSulfuras(Items[i]))
+                if (!IsSulfuras(item))
                 {
-                    Items[i].SellIn = Items[i].SellIn - ONE_SELLIN_UNIT;
+                    item.SellIn = item.SellIn - ONE_SELLIN_UNIT;
                 }
 
-                if (Items[i].SellIn < 0)
+                if (item.SellIn < 0)
                 {
-                    if (!IsAgedBrie(Items[i]))
+                    if (!IsAgedBrie(item))
                     {
-                        if (!IsBackstagePass(Items[i]))
+                        if (!IsBackstagePass(item))
                         {
-                            if (Items[i].Quality > MINIMUM_QUALITY)
+                            if (item.Quality > MINIMUM_QUALITY)
                             {
-                                if (!IsSulfuras(Items[i]))
+                                if (!IsSulfuras(item))
                                 {
-                                    Items[i].Quality = Items[i].Quality - ONE_QUALITY_UNIT;
+                                    item.Quality = item.Quality - ONE_QUALITY_UNIT;
                                 }
                             }
                         }
                         else
                         {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
+                            item.Quality = item.Quality - item.Quality;
                         }
                     }
                     else
                     {
-                        if (Items[i].Quality < MAXIMUM_QUALITY)
+                        if (item.Quality < MAXIMUM_QUALITY)
                         {
-                            Items[i].Quality = Items[i].Quality + ONE_QUALITY_UNIT;
+                            item.Quality = item.Quality + ONE_QUALITY_UNIT;
                         }
                     }
                 }
