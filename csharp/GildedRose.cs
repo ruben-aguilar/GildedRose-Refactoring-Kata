@@ -32,37 +32,41 @@ namespace csharp
                 if(IsAgedBrie(item))
                 {
                     IncreaseQuality(item);
-                }
-                if(IsBackstagePass(item))
-                {
-                    IncreaseBackstageQuality(item);
-                }
-                if(IsRegularItem(item))
-                {
-                    DecreaseQuality(item);
-                }
+                    DecreaseSellIn(item);
 
-                if (!IsSulfuras(item))
-                {
-                    item.SellIn = item.SellIn - ONE_SELLIN_UNIT;
-                }
-
-                if (item.SellIn < 0)
-                {
-                    if(IsAgedBrie(item))
+                    if(item.SellIn < 0)
                     {
                         IncreaseQuality(item);
                     }
-                    else if(IsBackstagePass(item))
+                }
+
+                if (IsBackstagePass(item))
+                {
+                    IncreaseBackstageQuality(item);
+                    DecreaseSellIn(item);
+
+                    if (item.SellIn < 0)
                     {
                         item.Quality = MINIMUM_QUALITY;
                     }
-                    else if(IsRegularItem(item))
+                }
+
+                if (IsRegularItem(item))
+                {
+                    DecreaseQuality(item);
+                    DecreaseSellIn(item);
+
+                    if(item.SellIn < 0)
                     {
                         DecreaseQuality(item);
                     }
                 }
             }
+        }
+
+        private static void DecreaseSellIn(Item item)
+        {
+            item.SellIn = item.SellIn - ONE_SELLIN_UNIT;
         }
 
         private static void IncreaseBackstageQuality(Item item)
