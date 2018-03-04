@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace csharp
 {
-    class AgedBrieStrategy : IUpdateStrategy
+    class AgedBrieStrategy : UpdateStrategy
     {
-        private const int MAXIMUM_QUALITY = 50;
-        private const int ONE_QUALITY_UNIT = 1;
-
-        private const int ONE_SELLIN_UNIT = 1;
-
-        public void Update(Item item)
+        public override void Update(Item item)
         {
             IncreaseQuality(item);
             DecreaseSellIn(item);
@@ -31,11 +26,5 @@ namespace csharp
                 item.Quality = item.Quality + ONE_QUALITY_UNIT;
             }
         }
-
-        private static void DecreaseSellIn(Item item)
-        {
-            item.SellIn = item.SellIn - ONE_SELLIN_UNIT;
-        }
-
     }
 }

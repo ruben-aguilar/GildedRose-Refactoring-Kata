@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace csharp
 {
-    class BackstagePassStrategy : IUpdateStrategy
+    class BackstagePassStrategy : UpdateStrategy
     {
-        private const int MINIMUM_QUALITY = 0;
         private const int BACKSTAGE_PASS_TWO_QUALITY_UNITS_THRESHOLD = 11;
         private const int BACKSTAGE_PASS_THREE_QUALITY_UNITS_THRESOLD = 6;
-        private const int ONE_SELLIN_UNIT = 1;
-        private const int MAXIMUM_QUALITY = 50;
-        private const int ONE_QUALITY_UNIT = 1;
 
-        public void Update(Item item)
+        public override void Update(Item item)
         {
             IncreaseBackstageQuality(item);
             DecreaseSellIn(item);
@@ -39,11 +35,6 @@ namespace csharp
             {
                 IncreaseQuality(item);
             }
-        }
-
-        private static void DecreaseSellIn(Item item)
-        {
-            item.SellIn = item.SellIn - ONE_SELLIN_UNIT;
         }
 
         private static void IncreaseQuality(Item item)
