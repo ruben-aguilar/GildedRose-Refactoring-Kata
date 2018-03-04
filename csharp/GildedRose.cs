@@ -25,19 +25,15 @@ namespace csharp
 
         public void UpdateQuality()
         {
+            AgedBrieStrategy agedBrieStrategy = new AgedBrieStrategy();
+
             for (var i = 0; i < Items.Count; i++)
             {
                 Item item = Items[i];
 
                 if(IsAgedBrie(item))
                 {
-                    IncreaseQuality(item);
-                    DecreaseSellIn(item);
-
-                    if(item.SellIn < 0)
-                    {
-                        IncreaseQuality(item);
-                    }
+                    agedBrieStrategy.Update(item);
                 }
 
                 if (IsBackstagePass(item))
