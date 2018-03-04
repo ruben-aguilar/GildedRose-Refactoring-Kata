@@ -61,14 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgedBrieStrategy.cs" />
-    <Compile Include="ApprovalTest.cs" />
-    <Compile Include="BackstagePassStrategy.cs" />
+    <Compile Include="UpdateStrategies\AgedBrieStrategy.cs" />
+    <Compile Include="UpdateStrategies\BackstagePassStrategy.cs" />
     <Compile Include="GildedRose.cs" />
     <Compile Include="StrategySelector.cs" />
-    <Compile Include="SulfurasStrategy.cs" />
-    <Compile Include="UpdateStrategy.cs" />
-    <Compile Include="RegularItemStrategy.cs" />
+    <Compile Include="UpdateStrategies\SulfurasStrategy.cs" />
+    <Compile Include="UpdateStrategies\UpdateStrategy.cs" />
+    <Compile Include="UpdateStrategies\RegularItemStrategy.cs" />
     <Compile Include="Tests\GildedRoseShould_.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
