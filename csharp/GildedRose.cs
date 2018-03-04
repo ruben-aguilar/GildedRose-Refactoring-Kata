@@ -29,32 +29,17 @@ namespace csharp
             {
                 Item item = Items[i];
 
-                if (!IsAgedBrie(item) && !IsBackstagePass(item))
+                if(IsAgedBrie(item))
                 {
-                    if(!IsSulfuras(item))
-                    {
-                        DecreaseQuality(item);
-                    }
+                    IncreaseQuality(item);
                 }
-                else
+                if(IsBackstagePass(item))
                 {
-                    if (item.Quality < MAXIMUM_QUALITY)
-                    {
-                        IncreaseQuality(item);
-
-                        if (IsBackstagePass(item))
-                        {
-                            if (item.SellIn < BACKSTAGE_PASS_TWO_QUALITY_UNITS_THRESHOLD)
-                            {
-                                IncreaseQuality(item);
-                            }
-
-                            if (item.SellIn < BACKSTAGE_PASS_THREE_QUALITY_UNITS_THRESOLD)
-                            {
-                                IncreaseQuality(item);
-                            }
-                        }
-                    }
+                    IncreaseBackstageQuality(item);
+                }
+                if(IsRegularItem(item))
+                {
+                    DecreaseQuality(item);
                 }
 
                 if (!IsSulfuras(item))
@@ -68,16 +53,36 @@ namespace csharp
                     {
                         IncreaseQuality(item);
                     }
-                    if(IsBackstagePass(item))
+                    else if(IsBackstagePass(item))
                     {
                         item.Quality = MINIMUM_QUALITY;
                     }
-                    else if(!IsSulfuras(item))
+                    else if(IsRegularItem(item))
                     {
                         DecreaseQuality(item);
                     }
                 }
             }
+        }
+
+        private static void IncreaseBackstageQuality(Item item)
+        {
+            IncreaseQuality(item);
+
+            if (item.SellIn < BACKSTAGE_PASS_TWO_QUALITY_UNITS_THRESHOLD)
+            {
+                IncreaseQuality(item);
+            }
+
+            if (item.SellIn < BACKSTAGE_PASS_THREE_QUALITY_UNITS_THRESOLD)
+            {
+                IncreaseQuality(item);
+            }
+        }
+
+        private bool IsRegularItem(Item item)
+        {
+            return !IsAgedBrie(item) && !IsBackstagePass(item) && !IsSulfuras(item);
         }
 
         private static void IncreaseQuality(Item item)
