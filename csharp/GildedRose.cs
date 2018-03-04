@@ -31,12 +31,9 @@ namespace csharp
 
                 if (!IsAgedBrie(item) && !IsBackstagePass(item))
                 {
-                    if (item.Quality > MINIMUM_QUALITY)
+                    if(!IsSulfuras(item))
                     {
-                        if (!IsSulfuras(item))
-                        {
-                            DecreaseQuality(item);
-                        }
+                        DecreaseQuality(item);
                     }
                 }
                 else
@@ -49,18 +46,12 @@ namespace csharp
                         {
                             if (item.SellIn < BACKSTAGE_PASS_TWO_QUALITY_UNITS_THRESHOLD)
                             {
-                                if (item.Quality < MAXIMUM_QUALITY)
-                                {
-                                    IncreaseQuality(item);
-                                }
+                                IncreaseQuality(item);
                             }
 
                             if (item.SellIn < BACKSTAGE_PASS_THREE_QUALITY_UNITS_THRESOLD)
                             {
-                                if (item.Quality < MAXIMUM_QUALITY)
-                                {
-                                    IncreaseQuality(item);
-                                }
+                                IncreaseQuality(item);
                             }
                         }
                     }
@@ -77,12 +68,9 @@ namespace csharp
                     {
                         if (!IsBackstagePass(item))
                         {
-                            if (item.Quality > MINIMUM_QUALITY)
+                            if(!IsSulfuras(item))
                             {
-                                if (!IsSulfuras(item))
-                                {
-                                    DecreaseQuality(item);
-                                }
+                                DecreaseQuality(item);
                             }
                         }
                         else
@@ -92,10 +80,7 @@ namespace csharp
                     }
                     else
                     {
-                        if (item.Quality < MAXIMUM_QUALITY)
-                        {
-                            IncreaseQuality(item);
-                        }
+                        IncreaseQuality(item);
                     }
                 }
             }
@@ -103,12 +88,18 @@ namespace csharp
 
         private static void IncreaseQuality(Item item)
         {
-            item.Quality = item.Quality + ONE_QUALITY_UNIT;
+            if(item.Quality < MAXIMUM_QUALITY)
+            {
+                item.Quality = item.Quality + ONE_QUALITY_UNIT;
+            }
         }
 
         private static void DecreaseQuality(Item item)
         {
-            item.Quality = item.Quality - ONE_QUALITY_UNIT;
+            if(item.Quality > MINIMUM_QUALITY)
+            {
+                item.Quality = item.Quality - ONE_QUALITY_UNIT;
+            }
         }
 
         private bool IsSulfuras(Item item)
