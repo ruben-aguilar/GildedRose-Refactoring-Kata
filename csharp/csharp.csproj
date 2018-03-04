@@ -65,6 +65,8 @@
     <Compile Include="ApprovalTest.cs" />
     <Compile Include="BackstagePassStrategy.cs" />
     <Compile Include="GildedRose.cs" />
+    <Compile Include="StrategySelector.cs" />
+    <Compile Include="SulfurasStrategy.cs" />
     <Compile Include="UpdateStrategy.cs" />
     <Compile Include="RegularItemStrategy.cs" />
     <Compile Include="Tests\GildedRoseShould_.cs" />
