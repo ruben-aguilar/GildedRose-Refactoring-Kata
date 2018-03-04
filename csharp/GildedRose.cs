@@ -12,10 +12,8 @@ namespace csharp
 
         public void UpdateQuality()
         {
-
-            for (var i = 0; i < Items.Count; i++)
+            foreach(var item in Items)
             {
-                Item item = Items[i];
                 StrategySelector.GetStrategyFor(item).Update(item);
             }
         }

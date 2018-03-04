@@ -18,11 +18,16 @@ namespace csharp
 
             if (item.SellIn < 0)
             {
-                item.Quality = MINIMUM_QUALITY;
+                SetToMinimumQuality(item);
             }
         }
 
-        private static void IncreaseBackstageQuality(Item item)
+        private static void SetToMinimumQuality(Item item)
+        {
+            item.Quality = MINIMUM_QUALITY;
+        }
+
+        private void IncreaseBackstageQuality(Item item)
         {
             IncreaseQuality(item);
 
@@ -34,14 +39,6 @@ namespace csharp
             if (item.SellIn < BACKSTAGE_PASS_THREE_QUALITY_UNITS_THRESOLD)
             {
                 IncreaseQuality(item);
-            }
-        }
-
-        private static void IncreaseQuality(Item item)
-        {
-            if (item.Quality < MAXIMUM_QUALITY)
-            {
-                item.Quality = item.Quality + ONE_QUALITY_UNIT;
             }
         }
     }

@@ -18,13 +18,5 @@ namespace csharp
                 IncreaseQuality(item);
             }
         }
-
-        private static void IncreaseQuality(Item item)
-        {
-            if (item.Quality < MAXIMUM_QUALITY)
-            {
-                item.Quality = item.Quality + ONE_QUALITY_UNIT;
-            }
-        }
     }
 }

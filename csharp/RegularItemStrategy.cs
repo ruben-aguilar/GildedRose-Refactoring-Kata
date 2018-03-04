@@ -11,6 +11,7 @@ namespace csharp
         public override void Update(Item item)
         {
             DecreaseQuality(item);
+
             DecreaseSellIn(item);
 
             if (item.SellIn < 0)

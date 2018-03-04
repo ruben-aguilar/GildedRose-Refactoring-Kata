@@ -13,13 +13,23 @@ namespace csharp
         protected const int MAXIMUM_QUALITY = 50;
         protected const int ONE_QUALITY_UNIT = 1;
 
+
         public abstract void Update(Item item);
+
 
         protected static void DecreaseQuality(Item item)
         {
             if (item.Quality > MINIMUM_QUALITY)
             {
                 item.Quality = item.Quality - ONE_QUALITY_UNIT;
+            }
+        }
+
+        protected static void IncreaseQuality(Item item)
+        {
+            if (item.Quality < MAXIMUM_QUALITY)
+            {
+                item.Quality = item.Quality + ONE_QUALITY_UNIT;
             }
         }
 
