@@ -26,6 +26,7 @@ namespace csharp
         public void UpdateQuality()
         {
             AgedBrieStrategy agedBrieStrategy = new AgedBrieStrategy();
+            BackstagePassStrategy backstagePassStrategy = new BackstagePassStrategy();
 
             for (var i = 0; i < Items.Count; i++)
             {
@@ -38,13 +39,7 @@ namespace csharp
 
                 if (IsBackstagePass(item))
                 {
-                    IncreaseBackstageQuality(item);
-                    DecreaseSellIn(item);
-
-                    if (item.SellIn < 0)
-                    {
-                        item.Quality = MINIMUM_QUALITY;
-                    }
+                    backstagePassStrategy.Update(item);
                 }
 
                 if (IsRegularItem(item))

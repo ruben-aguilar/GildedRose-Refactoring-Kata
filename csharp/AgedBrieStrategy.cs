@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp
 {
-    class AgedBrieStrategy : IUpdateStragety
+    class AgedBrieStrategy : IUpdateStrategy
     {
         private const int MAXIMUM_QUALITY = 50;
         private const int ONE_QUALITY_UNIT = 1;

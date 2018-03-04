@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp
 {
-    public interface IUpdateStragety
+    public interface IUpdateStrategy
     {
         void Update(Item item);
     }
