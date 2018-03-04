@@ -64,23 +64,17 @@ namespace csharp
 
                 if (item.SellIn < 0)
                 {
-                    if (!IsAgedBrie(item))
-                    {
-                        if (!IsBackstagePass(item))
-                        {
-                            if(!IsSulfuras(item))
-                            {
-                                DecreaseQuality(item);
-                            }
-                        }
-                        else
-                        {
-                            item.Quality = MINIMUM_QUALITY;
-                        }
-                    }
-                    else
+                    if(IsAgedBrie(item))
                     {
                         IncreaseQuality(item);
+                    }
+                    if(IsBackstagePass(item))
+                    {
+                        item.Quality = MINIMUM_QUALITY;
+                    }
+                    else if(!IsSulfuras(item))
+                    {
+                        DecreaseQuality(item);
                     }
                 }
             }
