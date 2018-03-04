@@ -27,6 +27,7 @@ namespace csharp
         {
             AgedBrieStrategy agedBrieStrategy = new AgedBrieStrategy();
             BackstagePassStrategy backstagePassStrategy = new BackstagePassStrategy();
+            RegularItemStrategy regularItemStrategy = new RegularItemStrategy();
 
             for (var i = 0; i < Items.Count; i++)
             {
@@ -44,13 +45,7 @@ namespace csharp
 
                 if (IsRegularItem(item))
                 {
-                    DecreaseQuality(item);
-                    DecreaseSellIn(item);
-
-                    if(item.SellIn < 0)
-                    {
-                        DecreaseQuality(item);
-                    }
+                    regularItemStrategy.Update(item);
                 }
             }
         }
