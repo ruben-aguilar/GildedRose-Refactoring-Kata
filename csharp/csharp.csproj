@@ -61,10 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApprovalTest.cs" />
     <Compile Include="UpdateStrategies\AgedBrieStrategy.cs" />
     <Compile Include="UpdateStrategies\BackstagePassStrategy.cs" />
     <Compile Include="GildedRose.cs" />
     <Compile Include="StrategySelector.cs" />
+    <Compile Include="UpdateStrategies\ConjuredStrategy.cs" />
     <Compile Include="UpdateStrategies\SulfurasStrategy.cs" />
     <Compile Include="UpdateStrategies\UpdateStrategy.cs" />
     <Compile Include="UpdateStrategies\RegularItemStrategy.cs" />

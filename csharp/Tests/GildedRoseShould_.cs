@@ -251,5 +251,47 @@ namespace csharp
 
             Assert.AreEqual(50, backstagePass.Quality);
         }
+
+        [Test]
+        public void drop_conjured_items_quality_by_two_per_day()
+        {
+            Item conjured = Tests.ItemBuilder.AConjured()
+                                                 .WithQuality(4)
+                                                 .WithSellIn(4)
+                                                 .Build();
+            GildedRose gildedRose = new GildedRose(new List<Item> { conjured });
+
+            gildedRose.UpdateQuality();
+
+            Assert.AreEqual(2, conjured.Quality);
+        }
+
+        [Test]
+        public void drop_conjured_items_quality_by_four_per_day_when_the_sellin_date_has_passed()
+        {
+            Item conjured = Tests.ItemBuilder.AConjured()
+                                     .WithQuality(5)
+                                     .WithSellIn(0)
+                                     .Build();
+            GildedRose gildedRose = new GildedRose(new List<Item> { conjured });
+
+            gildedRose.UpdateQuality();
+
+            Assert.AreEqual(1, conjured.Quality);
+        }
+
+        [Test]
+        public void decrease_sellin_after_update()
+        {
+            Item conjured = Tests.ItemBuilder.AConjured()
+                         .WithSellIn(1)
+                         .Build();
+            GildedRose gildedRose = new GildedRose(new List<Item> { conjured });
+
+            gildedRose.UpdateQuality();
+
+            Assert.AreEqual(0, conjured.SellIn);
+        }
+
     }
 }

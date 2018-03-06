@@ -1,4 +1,6 @@
-﻿namespace csharp.Tests
+﻿using System;
+
+namespace csharp.Tests
 {
     internal class ItemBuilder
     {
@@ -26,6 +28,11 @@
         {
             // I had to look at the code again
             return new ItemBuilder("Backstage passes to a TAFKAL80ETC concert");
+        }
+
+        internal static ItemBuilder AConjured()
+        {
+            return new ItemBuilder("Conjured");
         }
 
         private ItemBuilder()
@@ -69,5 +76,7 @@
                 Quality = this.quality
             };
         }
+
+
     }
 }
